@@ -1,0 +1,58 @@
+2024-12-12 12:43:49,572 - INFO - logging started...
+2024-12-12 12:43:49,573 - INFO - animal_web_generator started
+2024-12-12 12:43:49,573 - INFO - loading data from animals_data.json
+2024-12-12 12:43:49,573 - INFO - animals_data.json loaded
+2024-12-12 12:43:49,573 - INFO - Starting to sort Foxes as per Step1
+2024-12-12 12:43:49,573 - INFO - fox_dict found starting to parse
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'American Foxhound', 'Diet': 'Omnivore', 'Location': 'North-America', 'Type': 'Hound'}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'Arctic Fox', 'Diet': 'Carnivore', 'Location': 'Eurasia', 'Type': 'Mammal'}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'Cross Fox', 'Diet': 'Carnivore', 'Location': 'North-America', 'Type': 'mammal'}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'Darwin’s fox', 'Diet': 'Omnivore', 'Location': 'South-America', 'Type': 'Mammal'}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'English Foxhound', 'Diet': 'Omnivore', 'Location': 'Europe', 'Type': ''}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'Fennec Fox', 'Diet': 'Omnivore', 'Location': 'Africa', 'Type': ''}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'Fox', 'Diet': 'Carnivore', 'Location': 'Africa', 'Type': 'Mammal'}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'Fox Snakes', 'Diet': 'Carnivore', 'Location': 'North-America', 'Type': ''}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'Fox Squirrel', 'Diet': 'Omnivore', 'Location': 'Central-America', 'Type': 'rodent'}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'Fox Terrier', 'Diet': 'Omnivore', 'Location': 'Europe', 'Type': ''}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'Golden-Crowned Flying Fox', 'Diet': 'Herbivore', 'Location': 'Asia', 'Type': ''}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'Gray Fox', 'Diet': 'Omnivore', 'Location': 'Central-America', 'Type': 'Mammal'}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'Kit Fox', 'Diet': 'Omnivore', 'Location': 'Central-America', 'Type': 'mammal'}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'Marble Fox', 'Diet': 'Omnivore', 'Location': 'North-America', 'Type': 'Mammal'}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'Red Fox', 'Diet': 'Omnivore', 'Location': 'Africa', 'Type': ''}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'Smooth Fox Terrier', 'Diet': 'Omnivore', 'Location': 'Europe', 'Type': ''}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'Tibetan Fox', 'Diet': 'Carnivore', 'Location': 'Asia', 'Type': 'Mammal'}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'Toy Fox Terrier', 'Diet': 'Omnivore', 'Location': 'North-America', 'Type': ''}
+2024-12-12 12:43:49,573 - INFO - Fox added to list with {'Name': 'Wire Fox Terrier', 'Diet': 'Omnivore', 'Location': 'Europe', 'Type': ''}
+2024-12-12 12:43:49,573 - INFO - Starting to print sorted foxs to display
+2024-12-12 12:43:49,573 - INFO - sorted_foxs found
+2024-12-12 12:43:49,574 - ERROR - sorted foxs is empty
+2024-12-12 12:43:49,574 - INFO - finished printing sorted_foxes
+2024-12-12 13:24:45,754 - INFO - logging started...
+2024-12-12 13:24:45,754 - INFO - animal_web_generator started
+2024-12-12 13:24:45,754 - INFO - loading data from animals_data.json
+2024-12-12 13:24:45,754 - INFO - animals_data.json loaded
+2024-12-12 13:24:45,754 - INFO - Starting to sort Foxes as per Step1
+2024-12-12 13:24:45,754 - INFO - fox_dict found starting to parse
+2024-12-12 13:24:45,754 - INFO - Fox added to list with {'Name': 'American Foxhound', 'Diet': 'Omnivore', 'Location': 'North-America', 'Type': 'Hound'}
+2024-12-12 13:24:45,754 - INFO - Fox added to list with {'Name': 'Arctic Fox', 'Diet': 'Carnivore', 'Location': 'Eurasia', 'Type': 'Mammal'}
+2024-12-12 13:24:45,754 - INFO - Fox added to list with {'Name': 'Cross Fox', 'Diet': 'Carnivore', 'Location': 'North-America', 'Type': 'mammal'}
+2024-12-12 13:24:45,754 - INFO - Fox added to list with {'Name': 'Darwin’s fox', 'Diet': 'Omnivore', 'Location': 'South-America', 'Type': 'Mammal'}
+2024-12-12 13:24:45,754 - INFO - Fox added to list with {'Name': 'English Foxhound', 'Diet': 'Omnivore', 'Location': 'Europe', 'Type': ''}
+2024-12-12 13:24:45,755 - INFO - Fox added to list with {'Name': 'Fennec Fox', 'Diet': 'Omnivore', 'Location': 'Africa', 'Type': ''}
+2024-12-12 13:24:45,755 - INFO - Fox added to list with {'Name': 'Fox', 'Diet': 'Carnivore', 'Location': 'Africa', 'Type': 'Mammal'}
+2024-12-12 13:24:45,755 - INFO - Fox added to list with {'Name': 'Fox Snakes', 'Diet': 'Carnivore', 'Location': 'North-America', 'Type': ''}
+2024-12-12 13:24:45,755 - INFO - Fox added to list with {'Name': 'Fox Squirrel', 'Diet': 'Omnivore', 'Location': 'Central-America', 'Type': 'rodent'}
+2024-12-12 13:24:45,755 - INFO - Fox added to list with {'Name': 'Fox Terrier', 'Diet': 'Omnivore', 'Location': 'Europe', 'Type': ''}
+2024-12-12 13:24:45,755 - INFO - Fox added to list with {'Name': 'Golden-Crowned Flying Fox', 'Diet': 'Herbivore', 'Location': 'Asia', 'Type': ''}
+2024-12-12 13:24:45,755 - INFO - Fox added to list with {'Name': 'Gray Fox', 'Diet': 'Omnivore', 'Location': 'Central-America', 'Type': 'Mammal'}
+2024-12-12 13:24:45,755 - INFO - Fox added to list with {'Name': 'Kit Fox', 'Diet': 'Omnivore', 'Location': 'Central-America', 'Type': 'mammal'}
+2024-12-12 13:24:45,755 - INFO - Fox added to list with {'Name': 'Marble Fox', 'Diet': 'Omnivore', 'Location': 'North-America', 'Type': 'Mammal'}
+2024-12-12 13:24:45,755 - INFO - Fox added to list with {'Name': 'Red Fox', 'Diet': 'Omnivore', 'Location': 'Africa', 'Type': ''}
+2024-12-12 13:24:45,755 - INFO - Fox added to list with {'Name': 'Smooth Fox Terrier', 'Diet': 'Omnivore', 'Location': 'Europe', 'Type': ''}
+2024-12-12 13:24:45,755 - INFO - Fox added to list with {'Name': 'Tibetan Fox', 'Diet': 'Carnivore', 'Location': 'Asia', 'Type': 'Mammal'}
+2024-12-12 13:24:45,755 - INFO - Fox added to list with {'Name': 'Toy Fox Terrier', 'Diet': 'Omnivore', 'Location': 'North-America', 'Type': ''}
+2024-12-12 13:24:45,755 - INFO - Fox added to list with {'Name': 'Wire Fox Terrier', 'Diet': 'Omnivore', 'Location': 'Europe', 'Type': ''}
+2024-12-12 13:24:45,755 - INFO - Starting to print sorted foxs to display
+2024-12-12 13:24:45,755 - INFO - sorted_foxs found
+2024-12-12 13:24:45,755 - ERROR - sorted foxs is empty
+2024-12-12 13:24:45,755 - INFO - finished printing sorted_foxes
