@@ -17,11 +17,3 @@ repos:
     hooks:
       - id: flake8
         args: [ --max-line-length=88 ]
-
-  - repo: local
-    hooks:
-      - id: pytest
-        name: pytest
-        entry: pytest
-        language: system
-        types: [ python ]
