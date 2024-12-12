@@ -1,0 +1,34 @@
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore logs and temporary files
+logging/logs.txt
+*.log
+
+# Ignore virtual environment directories
+.venv/
+env/
+venv/
+
+# Ignore IDE-specific files (PyCharm, VSCode, etc.)
+.idea/
+.vscode/
+
+# Ignore coverage reports
+.coverage
+*.cover
+coverage.xml
+*.hypothesis/
+
+# Ignore test cache
+*.pytest_cache/
+*.tox/
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore compiled HTML or other generated output files (e.g., for your animals.html)
+*.html

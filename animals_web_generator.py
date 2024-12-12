@@ -1,6 +1,7 @@
 import json
 from json import JSONDecodeError
 
+
 import logging
 import os
 
@@ -27,7 +28,7 @@ def setup_logging() -> logging:
 def load_data(json_file, logger: logging) -> FoxDict:
     try:
         logger.info("loading data from %s", json_file)
-        with open(json_file, "r") as handler:
+        with open(json_file, "r", encoding="utf-8") as handler:
             if handler:
                 logger.info(f"{json_file} loaded")
                 return json.load(handler)
@@ -93,12 +94,64 @@ def print_sorted_fox(sorted_foxs: list[dict], logger: logging) -> None:
     logger.info(("finished printing sorted_foxes"))
 
 
+def create_content(sorted_foxs: list[dict], logger: logging) -> str:
+    logger.info("Starting to create content for template")
+    content = "\n"
+    serialize_start = '          <li class="cards__item">\n'
+    serialize_end = "          </li>\n"
+    if sorted_foxs:
+        logger.info("sorted_foxs found")
+
+        for fox in sorted_foxs:
+            content += serialize_start
+            for key, value in fox.items():
+                item = f"            {key.ljust(8)}: {value}<br> \n"
+                content += item
+            content += serialize_end
+
+        else:
+            logger.error("sorted foxs is empty")
+    logger.info(("finished printing sorted_foxes"))
+    return content
+
+
+def populate_animal_html(content: str, logger: logging) -> None:
+    logger.info("starting to populate animal.html")
+    template = "animals_template.html"
+    animal_page = "animals.html"
+    replace_text = "__REPLACE_ANIMALS_INFO__"
+    if content:
+        try:
+            logger.info("trying to open template file %s", template)
+            with open(template, "r", encoding="utf-8") as handler:
+                template_data = handler.read()
+                logger.info("template file opened %s", template)
+        except FileNotFoundError:
+            logger.error(f"{template} not found")
+        except Exception as e:
+            logger.error("Unexpected error caught %s", e)
+        animal_page_contents = template_data.replace(replace_text, content)
+        logger.info(f"New content for {animal_page} created")
+        logger.debug(f"Content being written to {animal_page}: {content}")
+        try:
+            logger.info(f"trying to open or create {animal_page}")
+            with open(animal_page, "w", encoding="utf-8") as handler:
+                handler.write(animal_page_contents)
+                logger.info(f"created new content for {animal_page}")
+        except Exception as e:
+            logger.error("Unexpected error caught %s", e)
+    else:
+        logger.error("sorted fox dictionary is empty")
+
+
 def main() -> None:
     logger = setup_logging()
     logger.info("animal_web_generator started")
     fox_dict = load_data(json_file, logger)
     ans_task1 = step_1(fox_dict, logger)
-    print_sorted_fox(ans_task1, logger)
+    content = create_content(ans_task1, logger)
+    print(content)
+    populate_animal_html(content, logger)
 
 
 if __name__ == "__main__":
