@@ -2,11 +2,13 @@ import json
 
 FoxDict = list[dict]
 
+
 def load_data(json_file) -> FoxDict:
     with open(json_file, "r") as handler:
         return json.load(handler)
 
-def step_1(fox_dict: FoxDict) -> list[dict]:
+
+def step_1(fox_dict: FoxDict) -> FoxDict:
     """
     get the fox_dict and get specific fields from it.
     diet, location, type and name.
@@ -19,24 +21,22 @@ def step_1(fox_dict: FoxDict) -> list[dict]:
     sorted_foxs = []
 
     for item in fox_dict:
-        details = {}
-        name = item.get('name', "")
-        characteristics = item.get('characteristics', {})
-        diet = characteristics.get('diet', "")
-        location = item.get ('locations', [])
-        type = characteristics.get('type', "")
-        if name:
-            details['Name'] = name
-        if diet:
-            details['Diet'] = diet
-        if location:
-            details['Location'] = location[0]
-        if type:
-            details['Type'] = type
-        if details:
-            sorted_foxs.append(details)
+        name = item.get("name", "")
+        characteristics = item.get("characteristics", {})
+        diet = characteristics.get("diet", "")
+        location = item.get("locations", [])
+        fox_type = characteristics.get("type", "")
+
+        details = {
+            "Name": name,
+            "Diet": diet,
+            "Location": location[0],
+            "Type": fox_type,
+        }
+        sorted_foxs.append({key: value for key, value in details.items() if value})
 
     return sorted_foxs
+
 
 def print_sorted_fox(sorted_foxs: list[dict]) -> None:
     """
@@ -51,11 +51,6 @@ def print_sorted_fox(sorted_foxs: list[dict]) -> None:
         print("\n")
 
 
-
-
-
-
-
 def main() -> None:
     json_file = "animals_data.json"
     fox_dict = load_data(json_file)
@@ -63,8 +58,5 @@ def main() -> None:
     print_sorted_fox(ans_task1)
 
 
-
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
