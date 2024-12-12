@@ -1,6 +1,11 @@
 import logging
 import pytest
-from animals_web_generator import setup_logging, load_data, step_1, print_sorted_fox
+from animals_web_generator import (
+    setup_logging,
+    load_data,
+    sort_fox_dict,
+    print_sorted_fox,
+)
 import os
 
 
@@ -47,7 +52,7 @@ def test_sort_fox_1(caplog, logger):
         },
     ]
     with caplog.at_level(logging.INFO):
-        sorted_fox = step_1(test_fox_dict_1, logger)
+        sorted_fox = sort_fox_dict(test_fox_dict_1, logger)
     for fox in sorted_fox:
         assert fox["Name"] == "Arctic Fox"
         assert fox["Location"] == "Eurasia"
@@ -60,7 +65,7 @@ def test_sort_fox_2(caplog, logger):
         {"name": "Missing Data Fox", "locations": [], "characteristics": {}},
     ]
     with caplog.at_level(logging.INFO):
-        sorted_fox = step_1(test_fox_dict_2, logger)
+        sorted_fox = sort_fox_dict(test_fox_dict_2, logger)
     for fox in sorted_fox:
         assert fox["Name"] == "Missing Data Fox"
         assert "Location" not in fox
