@@ -1,30 +1,22 @@
 import json
 from json import JSONDecodeError
-
-
 import logging
-import os
+from pathlib import Path
+
+import logging.config
 
 FoxDict = list[dict]
-
 json_file = "animals_data.json"
 
 
 def setup_logging() -> logging:
     """
-    setup global logger for debugging
+    setup global logger for debugging. uses logging.conf
     :return:
     :rtype:
     """
-    folder = "logging"
-    file_name = "logs.txt"
-    path = os.path.join(folder, file_name)
-    os.makedirs(folder, exist_ok=True)
-    logging.basicConfig(
-        filename=path,
-        level=logging.DEBUG,
-        format="%(asctime)s - %(levelname)s - %(message)s",
-    )
+    config_path = Path("logging.conf")
+    logging.config.fileConfig(config_path)
     logger = logging.getLogger(__name__)
     logger.info("logging started...")
     return logger
@@ -43,11 +35,8 @@ def load_data(json_file, logger: logging) -> FoxDict:
     try:
         logger.info("loading data from %s", json_file)
         with open(json_file, "r", encoding="utf-8") as handler:
-            if handler:
-                logger.info(f"{json_file} loaded")
-                data = json.load(handler)
-            else:
-                logger.error(f"{json_file} empty")
+            logger.info(f"{json_file} loaded")
+            data = json.load(handler)
     except FileNotFoundError:
         logger.error(f"{json_file} not found")
     except JSONDecodeError:
@@ -57,7 +46,7 @@ def load_data(json_file, logger: logging) -> FoxDict:
     return data
 
 
-def sort_fox_dict(fox_dict: FoxDict, logger: logging) -> FoxDict:
+def sort_fox_dict(fox_dict: FoxDict, logger: logging, choice=None) -> FoxDict:
     """
     get the fox_dict and get specific fields from it.
     diet, location, type and name.
@@ -66,35 +55,27 @@ def sort_fox_dict(fox_dict: FoxDict, logger: logging) -> FoxDict:
     :type foxdict:
     :return:
     """
-    logger.info("Starting to sort Foxes as per Step1")
-    sorted_foxs = []
+    logger.info("Starting to sort Foxes")
     if fox_dict:
         logger.info("fox_dict found starting to parse")
-        for item in fox_dict:
-            name = item.get("name", "")
-            characteristics = item.get("characteristics", {})
-            diet = characteristics.get("diet", "")
-            top_speed = characteristics.get("top_speed", "")
-            fox_type = characteristics.get("type", "")
-            target_skin_type = characteristics.get("skin_type", "")
-            location = item.get("locations", [])
-            taxonomy = item.get("taxonomy", {})
-            family = taxonomy.get("family", "")
-            genus = taxonomy.get("genus", "")
-            details = {
-                "Name": name,
-                "Family": family,
-                "Genus": genus,
-                "Top Speed": top_speed,
-                "Diet": diet,
-                "Location": location[0] if location else None,
-                "Type": fox_type,
-                "Skin Type": target_skin_type,
+        sorted_foxs = [
+            {
+                "Name": fox.get("name", ""),
+                "Family": fox.get("taxonomy", {}).get("family", ""),
+                "Genus": fox.get("taxonomy", {}).get("genus", ""),
+                "Top Speed": fox.get("characteristics", {}).get("top_speed", ""),
+                "Diet": fox.get("characteristics", {}).get("diet", ""),
+                "Location": fox.get("locations", [])[0]
+                if fox.get("locations")
+                else None,
+                "Type": fox.get("characteristics", {}).get("type", ""),
+                "Skin Type": fox.get("characteristics", {}).get("skin_type", ""),
             }
-            sorted_foxs.append({key: value for key, value in details.items() if value})
-            logger.info(f"Fox added to list with {details}")
-    else:
-        logger.error("fox_dict is empty")
+            for fox in fox_dict
+            if not choice
+            or choice.capitalize() == fox.get("characteristics").get("skin_type")
+        ]
+
     return sorted_foxs
 
 
@@ -149,13 +130,22 @@ def create_content(sorted_foxs: FoxDict, logger: logging) -> str:
                 content += item
             content += serialize_end
 
-        else:
-            logger.error("sorted foxs is empty")
+    else:
+        logger.error("sorted foxs is empty")
     logger.info(("finished printing sorted_foxes"))
     return content
 
 
 def populate_animal_html(content: str, logger: logging) -> None:
+    """
+
+    :param content:
+    :type content:
+    :param logger:
+    :type logger:
+    :return:
+    :rtype:
+    """
     logger.info("starting to populate animal.html")
     template = "animals_template.html"
     animal_page = "animals.html"
@@ -227,13 +217,14 @@ def get_skin_type_input(skin_types: set, logger: logging) -> str:
         if choice.capitalize() in skin_types:
             print(f"{choice.capitalize()} selected")
             logger.info(f"Skin type {choice} selected")
-            return choice
+            break
         else:
             print("invalid option")
             print("Valid options are:")
             for idx, skin_type in enumerate(skin_types):
                 print(f"{str(idx + 1).ljust(2)}: {skin_type}")
             continue
+    return choice
 
 
 def create_filtered_html(content: str, logger: logging, choice) -> None:
@@ -271,52 +262,6 @@ def create_filtered_html(content: str, logger: logging, choice) -> None:
         logger.error("sorted fox dictionary is empty")
 
 
-def filter_fox_dict(fox_dict: FoxDict, logger: logging, choice: str) -> FoxDict:
-    """
-    get the fox_dict and get specific fields from it.
-    diet, location, type and name.
-    if empty do not print
-    :param foxdict:
-    :type foxdict:
-    :return:
-    """
-    print(f"Generating content for page filtered by skin type: {choice}")
-    logger.info("Starting to filter Foxes")
-    filtered_foxs = []
-    if fox_dict:
-        logger.info("fox_dict found starting to parse")
-        for item in fox_dict:
-            name = item.get("name", "")
-            characteristics = item.get("characteristics", {})
-            diet = characteristics.get("diet", "")
-            top_speed = characteristics.get("top_speed", "")
-            fox_type = characteristics.get("type", "")
-            target_skin_type = characteristics.get("skin_type", "")
-            location = item.get("locations", [])
-            taxonomy = item.get("taxonomy", {})
-            family = taxonomy.get("family", "")
-            genus = taxonomy.get("genus", "")
-            if choice.capitalize() == target_skin_type:
-                details = {
-                    "Name": name,
-                    "Family": family,
-                    "Genus": genus,
-                    "Top Speed": top_speed,
-                    "Diet": diet,
-                    "Location": location[0] if location else None,
-                    "Type": fox_type,
-                    "Skin Type": target_skin_type,
-                }
-                filtered_foxs.append(
-                    {key: value for key, value in details.items() if value}
-                )
-                logger.info(f"Fox added to filtered_fox list with {details}")
-    else:
-        logger.error("fox_dict is empty")
-    print("Content generated")
-    return filtered_foxs
-
-
 def main() -> None:
     logger = setup_logging()
     logger.info("animal_web_generator started")
@@ -327,7 +272,7 @@ def main() -> None:
     skin_types = get_skin_types(fox_dict=fox_dict, logger=logger)
     display_skin_types(skin_types, logger)
     choice = get_skin_type_input(skin_types, logger)
-    filtered_fox = filter_fox_dict(fox_dict, logger, choice)
+    filtered_fox = sort_fox_dict(fox_dict, logger, choice)
     filter_content = create_content(sorted_foxs=filtered_fox, logger=logger)
     create_filtered_html(filter_content, logger, choice)
 
